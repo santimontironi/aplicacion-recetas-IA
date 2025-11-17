@@ -6,7 +6,10 @@ export const addRecipe = async (req, res) => {
         const { ingredients } = req.body;
         const recipe = await generateRecipeAI(ingredients);
 
-        await Recipe.create(recipe);
+        await Recipe.create({
+            ...recipe,
+            user: req.user.id
+        });
 
         res.json({ recipe });
     }
