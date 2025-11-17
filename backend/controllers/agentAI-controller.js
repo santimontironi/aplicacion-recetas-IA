@@ -7,7 +7,10 @@ export const generateRecipeAI = async (ingredients) => {
     You are a professional chef. Create a complet recipe using:
     ${ingredients.join(", ")}.
 
-    Return the recipe in the following format:
+    Return ONLY valid JSON.
+    Use double quotes.
+    Do NOT include commentary.
+    Final JSON format:
 
     {
       recipeName: '',
@@ -25,6 +28,8 @@ export const generateRecipeAI = async (ingredients) => {
   });
 
   const response = completion.choices[0].message.content; //se retorna la respuesta del agente
+
+  console.log(response);
 
   return JSON.parse(response);
 };

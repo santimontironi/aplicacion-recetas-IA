@@ -11,6 +11,6 @@ export const addRecipe = async (req, res) => {
         res.json({ recipe });
     }
     catch (error) {
-        return res.status(500).json({ message: '', error: error.message });
+        return res.status(500).json({ message: 'Error al agregar la receta', error: error.message });
     }
 }
