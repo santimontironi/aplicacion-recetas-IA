@@ -47,7 +47,7 @@ export const loginUser = async (req,res) => {
         if(!isMatch) return res.status(400).json({ message: 'La contraseña es incorrecta' });
 
         const token = jwt.sign(
-            { id: user._id }, 
+            { id: user._id }, //payload
             process.env.JWT_SECRET, 
             { expiresIn: '1d' }
         );
@@ -58,7 +58,7 @@ export const loginUser = async (req,res) => {
             sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax'
         });
 
-        res.status(200).json({ message: 'Inicio de sesión exitoso', token });
+        res.status(200).json({ user });
     }
     catch(error){
         res.status(500).json({ message: 'Error al iniciar sesión', error: error.message });

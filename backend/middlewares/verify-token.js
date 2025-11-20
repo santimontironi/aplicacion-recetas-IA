@@ -9,7 +9,7 @@ export const verifyToken = (req, res, next) => {
         return res.status(401).json({authorized: false});
     }
     try {
-        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        const decoded = jwt.verify(token, process.env.JWT_SECRET); //decoded es el payload del token creado en el login user
         req.user = decoded;
         next();
     } catch (error) {
