@@ -17,9 +17,9 @@ function App() {
           <Route element={<UserProvider />}>
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <SecurityRoutes>
-              <Route path="/dashboard" element={<DashboardUser/>}/>
-            </SecurityRoutes>
+            <Route path="/dashboard" element={<SecurityRoutes>
+              <DashboardUser/>
+            </SecurityRoutes>} />
           </Route>
 
         </Routes>
