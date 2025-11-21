@@ -2,7 +2,6 @@ import { useForm } from "react-hook-form";
 import { useContext, useState } from "react";
 import { UserContext } from "../context/UserContext";
 import Loader from "../components/Loader";
-import { registerAxios } from "../api/api";
 import { useNavigate } from "react-router-dom";
 import foodImage from '../img/food.jpg'
 
@@ -18,7 +17,7 @@ const Register = () => {
 
   const formSubmit = async (data) => {
     try {
-      await registerAxios(data)
+      await registerUser(data)
       navigate('/login')
     }
     catch (error) {
@@ -29,12 +28,12 @@ const Register = () => {
   }
 
   return (
-    <section className="w-full h-screen flex justify-center items-center bg-[#8a00c4]">
+    <section className="w-full min-h-screen flex justify-center items-center pt-10 pb-10 xl:pt-0 xl:pb-0 bg-[#8a00c4]">
       {registerUserLoading ? <Loader /> : (
-        <div className="flex flex-col xl:flex-row justify-between xl:w-[1000px] 2xl:w-[1200px] 2xl:h-[700px] shadow-[10px_10px_20px_5px_rgba(0,0,0,0.6)]">
-          <div className="2xl:w-[45%] bg-linear-120 to-[#8a00c4] from-[#43035f] flex flex-col">
-            <h2 className="text-center text-white 2xl:text-[50px] mt-16">Registro</h2>
-            <form className="flex flex-col justify-center items-center h-[70%] gap-3" method="post" onSubmit={handleSubmit(formSubmit)}>
+        <div className="flex flex-col xl:flex-row justify-between w-[320px] md:w-[600px] xl:w-[1000px] min-h-screen 2xl:w-[1200px] xl:min-h-[700px] shadow-[10px_10px_20px_5px_rgba(0,0,0,0.6)]">
+          <div className="2xl:w-[45%] xl:w-[50%] bg-linear-120 to-[#8a00c4] from-[#43035f] flex flex-col p-8 xl:p-0">
+            <h2 className="text-center text-white mb-7 xl:mb-0 xl:text-[40px] md:text-[35px] text-[30px] 2xl:text-[50px] mt-3 md:mt-5 xl:mt-12 2xl:mt-16">Registro</h2>
+            <form className="flex flex-col justify-center items-center h-[60%] 2xl:h-[70%] gap-3" method="post" onSubmit={handleSubmit(formSubmit)}>
               <div className="mb-3 relative">
                 <input className="p-3 pl-10 bg-white w-[250px] md:w-[300px] xl:w-[320px]" name="username" id="username" type="text" {...register('username')} placeholder="Nombre de usuario" />
                 <i className="bi bi-person absolute left-3 text-[#606060] top-1/2 -translate-y-1/2"></i>
@@ -50,13 +49,13 @@ const Register = () => {
                 <i className="bi bi-key absolute left-3 text-[#606060] top-1/2 -translate-y-1/2"></i>
                 {errors.password && <span>{errors.password.message}</span>}
               </div>
-              <button className="p-4 bg-[#8EECB8] hover:bg-[#51dd90] cursor-pointer w-[130px] md:w-[170px] xl:w-[200px] rounded-lg font-bold" type="submit">Crear cuenta</button>
+              <button className="p-4 bg-[#8EECB8] hover:bg-[#51dd90] cursor-pointer w-[150px] md:w-[170px] xl:w-[200px] rounded-lg font-bold" type="submit">Crear cuenta</button>
             </form>
           </div>
 
-          <div className="2xl:w-[55%] bg-[#8EECB8] flex flex-col justify-center items-center">
-            <div className="flex flex-col items-center justify-items-start text">
-              <p className="text-3xl font-bold mb-4 text-center">
+          <div className="2xl:w-[55%] xl:w-[50%] bg-[#8EECB8] flex flex-col justify-center items-center p-8">
+            <div className="flex flex-col items-center justify-items-start mt-6 mb-3">
+              <p className="xl:text-4xl md:text-3xl text-2xl 2xl:text-5xl font-bold mb-4 text-center">
                 Crea recetas únicas con tus ingredientes
               </p>
 
@@ -64,7 +63,7 @@ const Register = () => {
                 Registrate y empezá a generar platos personalizados según lo que tengas en tu cocina. Nuestra aplicación usa inteligencia artificial para sugerirte recetas rápidas, creativas y fáciles de preparar. Solo ingresá los ingredientes disponibles y descubrí nuevas ideas para cocinar sin complicaciones.
               </p>
             </div>
-            <img className="2xl:w-[350px] border-none" src={foodImage} alt="foto de comida" />
+            <img className="w-[250px] md:w-[300px] xl:w-[320px] 2xl:w-[300px] border-none" src={foodImage} alt="foto de comida" />
           </div>
 
         </div>
