@@ -1,6 +1,10 @@
 const Login = () => {
   return (
-    <div>Login</div>
+    <section className="w-full h-screen">
+      <div>
+        
+      </div>
+    </section>
   )
 }
 
