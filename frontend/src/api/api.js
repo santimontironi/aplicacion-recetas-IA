@@ -12,3 +12,7 @@ export const registerAxios = (dataUser) =>{
 export const loginAxios = (dataUser) =>{
     return baseUrl.post('/login',dataUser)
 }
+
+export const dashboardUser = () => {
+    return baseUrl.get('/dashboard')
+}
