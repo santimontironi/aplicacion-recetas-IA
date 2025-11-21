@@ -1,5 +1,5 @@
-import { connectDB } from "./bd/bd";
-import app from "./app";
+import { connectDB } from "./bd/bd.js";
+import app from "./app.js";
 import dotenv from "dotenv";
 
 dotenv.config();
