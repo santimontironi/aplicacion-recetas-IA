@@ -31,12 +31,13 @@ export const RecipesProvider = () => {
         allRecipes()
     }, [])
 
-    async function newRecipe(dataRecipe) {
+    async function newRecipe(ingredients) {
         setLoadingAddRecipe(true)
         try {
-            const res = await addRecipeAxios(dataRecipe)
+            const res = await addRecipeAxios(ingredients)
             const recipeAdded = res.data.recipe
             setRecipes((prev) => [...prev, recipeAdded])
+            return recipeAdded
         }
         catch (error) {
             console.log(error)

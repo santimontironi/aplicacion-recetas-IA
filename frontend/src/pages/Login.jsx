@@ -8,7 +8,7 @@ const Login = () => {
 
   const { loginUser, loginUserLoading } = useContext(UserContext)
 
-  const [errorRegister, setErrorRegister] = useState(null)
+  const [errorLogin, setErrorLogin] = useState(null)
 
   const navigate = useNavigate()
 
@@ -17,12 +17,12 @@ const Login = () => {
   async function submitForm(data) {
     try {
       await loginUser(data)
-      setErrorRegister(null)
-      navigate('/')
+      setErrorLogin(null)
+      navigate('/inicio')
     }
     catch (error) {
       if (error?.response?.data?.message) {
-        setErrorRegister(error.response.data.message)
+        setErrorLogin(error.response.data.error)
       }
     }
   }
@@ -33,9 +33,45 @@ const Login = () => {
         <div>
           <form method="post" onSubmit={handleSubmit(submitForm)}>
 
+            <div className="mb-3 flex flex-col gap-2 relative">
+              <input className="
+                  p-3 
+                  rounded-lg
+                  pl-10
+                 bg-white
+                  w-[250px]
+                  md:w-[300px]
+                  xl:w-[320px]"
+                name="identifier"
+                id="identifier"
+                type="text"
+                {...register('identifier', { required: 'El nombre de usuario o email son requeridos' })}
+                placeholder="Nombre de usuario" />
+
+              <i className="bi bi-person absolute left-3 text-[#606060] top-3"></i>
+
+              {errors.identifier && <span className="text-red-500">{errors.identifier.message}</span>}
+            </div>
+
+            <div className="mb-3 flex flex-col gap-2 relative">
+              <input className="
+                rounded-lg
+                    p-3
+                    pl-10
+                   bg-white
+                    w-[250px]
+                    md:w-[300px]
+                    xl:w-[320px]" type="password" id="password" name="password" {...register('password', { required: 'La contraseña es requerida' })} placeholder="Contraseña" />
+              <i className="bi bi-key absolute left-3 text-[#606060] top-3"></i>
+              {errors.password && <span className="text-red-500">{errors.password.message}</span>}
+            </div>
+
+            <button className="p-4 bg-[#8EECB8] hover:bg-[#51dd90] cursor-pointer w-[150px] md:w-[170px] xl:w-[200px] rounded-lg font-bold" type="submit">Ingresar</button>
           </form>
         </div>
       )}
+
+      {errorLogin && <p className="mt-5 bg-red-500 text-white font-bold p-4 w-[300px] rounded-lg text-center">{errorLogin}</p>}
 
     </section>
   )

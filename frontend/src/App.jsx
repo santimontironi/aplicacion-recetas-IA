@@ -19,16 +19,15 @@ function App() {
           <Route path="/" element={<Home />} />
 
           <Route element={<UserProvider />}>
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/dashboard" element={<SecurityRoutes>
+            <Route path="/ingresar" element={<Login />} />
+            <Route path="/registrarse" element={<Register />} />
+            <Route path="/inicio" element={<SecurityRoutes>
               <DashboardUser/>
             </SecurityRoutes>} />
           </Route>
 
           <Route element={<RecipesProvider />}>
             <Route path="/nueva-receta" element={<SecurityRoutes><AddRecipe /></SecurityRoutes>} />
-            <Route path="/receta/:id" element={<SecurityRoutes><AddRecipe /></SecurityRoutes>} />
           </Route>
 
           <Route element={<RecipeByIdProvider/>}>

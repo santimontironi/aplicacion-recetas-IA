@@ -1,9 +1,10 @@
 import { useContext } from "react";
 import { UserContext } from "../context/UserContext";
 import { useNavigate} from "react-router-dom";
-import Loader from "./Loader";
+import Loader from "./Loader"
+import { Outlet } from "react-router-dom";
 
-const SecurityRoutes = ({children}) => {
+const SecurityRoutes = () => {
 
     const navigate = useNavigate()
 
@@ -18,7 +19,7 @@ const SecurityRoutes = ({children}) => {
     }
 
     return (
-        {children}
+        <Outlet/>
     )
 }
 

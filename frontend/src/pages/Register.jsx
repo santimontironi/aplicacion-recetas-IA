@@ -19,7 +19,7 @@ const Register = () => {
     try {
       await registerUser(data)
       setErrorRegister(null)
-      navigate('/login')
+      navigate('/ingresar')
     }
     catch (error) {
       if (error?.response?.data?.message) {
@@ -35,12 +35,13 @@ const Register = () => {
     <section className="w-full min-h-screen flex flex-col justify-center items-center pt-10 pb-10 xl:pt-0 xl:pb-0 bg-[#8a00c4]">
       {registerUserLoading ? <Loader /> : (
         <div className="flex flex-col xl:flex-row justify-between w-[320px] md:w-[600px] xl:w-[1000px] min-h-screen 2xl:w-[1200px] xl:min-h-[700px] shadow-[10px_10px_20px_5px_rgba(0,0,0,0.6)]">
-          <div className="2xl:w-[45%] xl:w-[50%] bg-linear-120 to-[#8a00c4] from-[#43035f] flex flex-col p-8 xl:p-0">
-            <h2 className="text-center text-white mb-7 xl:mb-0 xl:text-[40px] md:text-[35px] text-[30px] 2xl:text-[50px] mt-3 md:mt-5 xl:mt-12 2xl:mt-16">Registro</h2>
+          <div className="2xl:w-[45%] xl:w-[50%] bg-linear-120 to-[#8a00c4] from-[#43035f] flex flex-col p-8 xl:p-0 xl:border-r-4 xl:border-white">
+            <h2 className="text-center text-white mb-7 xl:mb-0 xl:text-[40px] md:text-[35px] text-[30px] 2xl:text-[50px] mt-3 md:mt-5 xl:mt-12 2xl:mt-16 text-shadow-[5px_5px_10px_rgba(0,0,0,0.6)]">Registro</h2>
             <form className="flex flex-col justify-center items-center h-[60%] 2xl:h-[70%] gap-3" method="post" onSubmit={handleSubmit(formSubmit)}>
 
               <div className="mb-3 flex flex-col gap-2 relative">
-                <input className="p-3 
+                <input className="
+                  p-3 
                   rounded-lg
                   pl-10
                  bg-white
@@ -53,18 +54,33 @@ const Register = () => {
                   {...register('username', { required: 'El nombre de usuario es requerido' })}
                   placeholder="Nombre de usuario" />
                 <i className="bi bi-person absolute left-3 text-[#606060] top-3"></i>
-                
+
                 {errors.username && <span className="text-red-500">{errors.username.message}</span>}
               </div>
 
               <div className="mb-3 flex flex-col gap-2 relative">
-                <input className="rounded-lg p-3 pl-10 bg-white w-[250px] md:w-[300px] xl:w-[320px]" type="email" name="email" id="email" {...register('email',{ required: 'El correo electrónico es requerido', pattern: { value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i, message: 'El correo electrónico no es válido' }})} placeholder="Correo electrónico" />
+                <input className="
+                rounded-lg
+                  p-3
+                  pl-10
+                  bg-white
+                  w-[250px]
+                  md:w-[300px]
+                  xl:w-[320px]
+                     " type="email" name="email" id="email" {...register('email', { required: 'El correo electrónico es requerido', pattern: { value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i, message: 'El correo electrónico no es válido' } })} placeholder="Correo electrónico" />
                 <i className="bi bi-envelope-fill absolute left-3 text-[#606060] top-3"></i>
                 {errors.email && <span className="text-red-500">{errors.email.message}</span>}
               </div>
 
               <div className="mb-3 flex flex-col gap-2 relative">
-                <input className="rounded-lg p-3 pl-10 bg-white w-[250px] md:w-[300px] xl:w-[320px]" type="password" id="password" name="password" {...register('password', { required: 'La contraseña es requerida'})} placeholder="Contraseña" />
+                <input className="
+                rounded-lg
+                    p-3
+                    pl-10
+                   bg-white
+                    w-[250px]
+                    md:w-[300px]
+                    xl:w-[320px]" type="password" id="password" name="password" {...register('password', { required: 'La contraseña es requerida' })} placeholder="Contraseña" />
                 <i className="bi bi-key absolute left-3 text-[#606060] top-3"></i>
                 {errors.password && <span className="text-red-500">{errors.password.message}</span>}
               </div>
