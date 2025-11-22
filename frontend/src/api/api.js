@@ -16,3 +16,11 @@ export const loginAxios = (dataUser) =>{
 export const dashboardUser = () => {
     return baseUrl.get('/dashboard')
 }
+
+export const addRecipe = (dataRecipe) => {
+    return baseUrl.post('/addRecipe',dataRecipe)
+}
+
+export const getAllRecipes = () => {
+    return baseUrl.get('/allRecipes')
+}
