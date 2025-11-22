@@ -1,7 +1,7 @@
 import { createContext, useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import { useState } from "react";
-import { loginAxios, registerAxios, dashboardUser } from "../api/api";
+import { loginAxios, registerAxios, dashboardUserAxios } from "../api/api";
 
 export const UserContext = createContext();
 
@@ -49,8 +49,9 @@ export const UserProvider = () => {
 
     useEffect(() => {
         async function getDashboardUser() {
+            if(!user) return
             try {
-                const res = await dashboardUser()
+                const res = await dashboardUserAxios()
                 setUser(res.data.user)
                 return res.data
             }
