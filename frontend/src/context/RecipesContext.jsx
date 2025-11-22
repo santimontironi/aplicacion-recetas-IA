@@ -1,67 +1,67 @@
 import { createContext, useState, useEffect } from "react";
-import { addRecipe, getAllRecipes, deleteRecipe } from "../api/api";
+import { addRecipeAxios, getAllRecipesAxios, deleteRecipeAxios } from "../api/api";
 import { Outlet } from "react-router-dom";
 
-export const RecipeContext = createContext();
+export const RecipesContext = createContext();
 
-export const RecipeProvider = () => {
+export const RecipesProvider = () => {
 
-    const[loadingAddRecipe, setLoadingAddRecipe] = useState(false)
-    const[loadingAllRecipes, setLoadingAllRecipes] = useState(false)
-    const[recipes,setRecipes] = useState([])
+    const [loadingAddRecipe, setLoadingAddRecipe] = useState(false)
+    const [loadingAllRecipes, setLoadingAllRecipes] = useState(false)
+    const [recipes, setRecipes] = useState([])
 
     useEffect(() => {
-        async function allRecipes(){
+        async function allRecipes() {
             setLoadingAllRecipes(true)
-            try{
-                const res = await getAllRecipes()
+            try {
+                const res = await getAllRecipesAxios()
                 setRecipes(res.data.recipes)
             }
-            catch(error){
+            catch (error) {
                 console.log(error)
                 throw error
             }
-            finally{
+            finally {
                 setTimeout(() => {
                     setLoadingAllRecipes(false)
-                },1500)
+                }, 1500)
             }
         }
 
         allRecipes()
-    },[])
+    }, [])
 
     async function newRecipe(dataRecipe) {
         setLoadingAddRecipe(true)
-        try{
-            const res = await addRecipe(dataRecipe)
+        try {
+            const res = await addRecipeAxios(dataRecipe)
             const recipeAdded = res.data.recipe
             setRecipes((prev) => [...prev, recipeAdded])
         }
-        catch(error){
+        catch (error) {
             console.log(error)
             throw error
         }
-        finally{
+        finally {
             setTimeout(() => {
                 setLoadingAddRecipe(false)
-            },1500)
+            }, 1500)
         }
     }
 
-    async function deleteRecipeById(id){
-        try{
-            await deleteRecipe(id)
+    async function deleteRecipeById(id) {
+        try {
+            await deleteRecipeAxios(id)
             const filteredRecipes = recipes.filter((recipe) => recipe._id !== id)
             setRecipes(filteredRecipes)
         }
-        catch(error){
+        catch (error) {
             console.log(error)
             throw error
         }
     }
 
-    return <RecipeContext.Provider value={{addRecipe,loadingAddRecipe,recipes,newRecipe,loadingAllRecipes,deleteRecipeById}}>
+    return <RecipesContext.Provider value={{ addRecipe, loadingAddRecipe, recipes, newRecipe, loadingAllRecipes, deleteRecipeById }}>
         <Outlet />
-    </RecipeContext.Provider>
+    </RecipesContext.Provider>
 }

@@ -13,18 +13,22 @@ export const loginAxios = (dataUser) =>{
     return baseUrl.post('/login',dataUser)
 }
 
-export const dashboardUser = () => {
+export const dashboardUserAxios = () => {
     return baseUrl.get('/dashboard')
 }
 
-export const addRecipe = (dataRecipe) => {
+export const addRecipeAxios = (dataRecipe) => {
     return baseUrl.post('/addRecipe',dataRecipe)
 }
 
-export const getAllRecipes = () => {
+export const getAllRecipesAxios = () => {
     return baseUrl.get('/allRecipes')
 }
 
-export const deleteRecipe = (id) => {
+export const deleteRecipeAxios = (id) => {
     return baseUrl.post(`/deleteRecipe/${id}`,{})
+}
+
+export const recipeByIdAxios = (id) => {
+    return baseUrl.get(`/recipeById/${id}`)
 }

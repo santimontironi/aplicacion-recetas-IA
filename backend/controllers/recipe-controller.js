@@ -43,3 +43,20 @@ export const deleteRecipe = async (req,res) => {
         res.status(500).json({message: 'Error al eliminar la receta', error: error.message});
     }
 }
+
+export const recipeById = async (req,res) => {
+    try{
+        const idRecipe = req.params.id;
+
+        const recipe = await Recipe.findById(idRecipe);
+
+        res.status(200).json({ recipe });
+    }
+    catch(error){
+        res.status(500).json({message: 'Error al obtener la receta', error: error.message});
+    }
+}
+
+
+
+

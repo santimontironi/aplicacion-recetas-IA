@@ -5,6 +5,10 @@ import Register from "./pages/Register";
 import Home from "./pages/Home";
 import DashboardUser from "./pages/DashboardUser";
 import SecurityRoutes from "./components/SecurityRoutes";
+import { RecipesProvider } from "./context/RecipesContext";
+import AddRecipe from "./pages/AddRecipe";
+import Recipe from "./pages/Recipe";
+import { RecipeByIdProvider } from "./context/RecipeById.JSX";
 
 function App() {
 
@@ -20,6 +24,15 @@ function App() {
             <Route path="/dashboard" element={<SecurityRoutes>
               <DashboardUser/>
             </SecurityRoutes>} />
+          </Route>
+
+          <Route element={<RecipesProvider />}>
+            <Route path="/nueva-receta" element={<SecurityRoutes><AddRecipe /></SecurityRoutes>} />
+            <Route path="/receta/:id" element={<SecurityRoutes><AddRecipe /></SecurityRoutes>} />
+          </Route>
+
+          <Route element={<RecipeByIdProvider/>}>
+              <Route path="/receta/:id" element={<SecurityRoutes><Recipe/></SecurityRoutes>}/>
           </Route>
 
         </Routes>
