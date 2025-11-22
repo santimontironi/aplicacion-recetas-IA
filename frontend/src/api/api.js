@@ -24,3 +24,7 @@ export const addRecipe = (dataRecipe) => {
 export const getAllRecipes = () => {
     return baseUrl.get('/allRecipes')
 }
+
+export const deleteRecipe = (id) => {
+    return baseUrl.post(`/deleteRecipe/${id}`,{})
+}
