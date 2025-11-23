@@ -9,7 +9,7 @@ export const UserProvider = () => {
 
     const [loginUserLoading, setLoginUserLoading] = useState(false)
     const [registerUserLoading, setRegisterUserLoading] = useState(false)
-    const [dashboardLoading, setDashboardLoading] = useState(false)
+    const [dashboardLoading, setDashboardLoading] = useState(true)
     const [user, setUser] = useState(null)
 
     const loginUser = async (dataUser) => {
@@ -49,15 +49,17 @@ export const UserProvider = () => {
 
     useEffect(() => {
         async function getDashboardUser() {
-            if(!user) return
             try {
                 const res = await dashboardUserAxios()
+                if(res.data.authorized === false){
+                    setUser(null)
+                    return
+                }
                 setUser(res.data.user)
-                return res.data
             }
             catch (error) {
                 console.log(error)
-                throw error
+                setUser(null)
             }
             finally {
                 setTimeout(() => {

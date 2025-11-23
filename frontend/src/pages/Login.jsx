@@ -1,4 +1,4 @@
-import { useContext, useState } from "react"
+import { useContext, useState, useEffect } from "react"
 import { UserContext } from "../context/UserContext"
 import Loader from "../components/Loader"
 import { useForm } from "react-hook-form"
@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom"
 
 const Login = () => {
 
-  const { loginUser, loginUserLoading } = useContext(UserContext)
+  const { loginUser, loginUserLoading, user } = useContext(UserContext)
 
   const [errorLogin, setErrorLogin] = useState(null)
 
@@ -18,14 +18,19 @@ const Login = () => {
     try {
       await loginUser(data)
       setErrorLogin(null)
-      navigate('/inicio')
     }
     catch (error) {
       if (error?.response?.data?.message) {
-        setErrorLogin(error.response.data.error)
+        setErrorLogin(error.response.data.message)
       }
     }
   }
+
+  useEffect(() => {
+    if (user) {
+      navigate('/inicio')
+    }
+  }, [user])
 
   return (
     <section className="w-full h-screen">
@@ -68,10 +73,12 @@ const Login = () => {
 
             <button className="p-4 bg-[#8EECB8] hover:bg-[#51dd90] cursor-pointer w-[150px] md:w-[170px] xl:w-[200px] rounded-lg font-bold" type="submit">Ingresar</button>
           </form>
+
+          {errorLogin && <p className="text-red-500">{errorLogin}</p>}
         </div>
       )}
 
-      {errorLogin && <p className="mt-5 bg-red-500 text-white font-bold p-4 w-[300px] rounded-lg text-center">{errorLogin}</p>}
+      
 
     </section>
   )

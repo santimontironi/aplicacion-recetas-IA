@@ -1,12 +1,10 @@
 import { useContext } from "react";
 import { UserContext } from "../context/UserContext";
-import { useNavigate} from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import Loader from "./Loader"
 import { Outlet } from "react-router-dom";
 
 const SecurityRoutes = () => {
-
-    const navigate = useNavigate()
 
     const { user, dashboardLoading } = useContext(UserContext)
 
@@ -15,7 +13,7 @@ const SecurityRoutes = () => {
     }
 
     if(!user){
-        return navigate('/login')
+        return <Navigate to="/ingresar"/> 
     }
 
     return (
