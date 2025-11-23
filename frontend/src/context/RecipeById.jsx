@@ -9,7 +9,7 @@ export const RecipeByIdContext = createContext();
 export const RecipeByIdProvider = () => {
 
     const[recipe,setRecipe] = useState([])
-    const[loadingGetRecipe,setLoadingGetRecipe] = useState(null)
+    const[loadingGetRecipe,setLoadingGetRecipe] = useState(true)
 
     const params = useParams()
 
@@ -17,7 +17,6 @@ export const RecipeByIdProvider = () => {
 
     useEffect(() => {
         async function getRecipe(){
-            setLoadingGetRecipe(true)
             try{
                 const res = await recipeByIdAxios(id)
                 setRecipe(res.data.recipe)

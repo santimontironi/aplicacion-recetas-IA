@@ -23,10 +23,7 @@ const Register = () => {
     }
     catch (error) {
       if (error?.response?.data?.message) {
-        console.log(error?.response?.data?.error)
-        setTimeout(() => {
-          setErrorRegister(error?.response?.data?.error)
-        }, 1500)
+        setErrorRegister(error.response.data.message)
       }
     }
   }

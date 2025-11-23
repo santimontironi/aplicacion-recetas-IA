@@ -7,12 +7,11 @@ export const RecipesContext = createContext();
 export const RecipesProvider = () => {
 
     const [loadingAddRecipe, setLoadingAddRecipe] = useState(false)
-    const [loadingAllRecipes, setLoadingAllRecipes] = useState(false)
+    const [loadingAllRecipes, setLoadingAllRecipes] = useState(true)
     const [recipes, setRecipes] = useState([])
 
     useEffect(() => {
         async function allRecipes() {
-            setLoadingAllRecipes(true)
             try {
                 const res = await getAllRecipesAxios()
                 setRecipes(res.data.recipes)

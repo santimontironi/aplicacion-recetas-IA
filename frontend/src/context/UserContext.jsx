@@ -33,8 +33,7 @@ export const UserProvider = () => {
     const registerUser = async (dataUser) => {
         setRegisterUserLoading(true)
         try {
-            const res = await registerAxios(dataUser)
-            setUser(res.data.user)
+            await registerAxios(dataUser)
         }
         catch (error) {
             console.log(error)
@@ -43,7 +42,7 @@ export const UserProvider = () => {
         finally {
             setTimeout(() => {
                 setRegisterUserLoading(false)
-            }, 1500)
+            }, 2000)
         }
     }
 
