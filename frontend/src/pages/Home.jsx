@@ -11,7 +11,7 @@ const Home = () => {
         <div className='flex flex-col md:flex-row gap-5 mt-7'>
           <Link className='bg-[#15b67d] text-white py-2 px-4 rounded-lg w-[170px] text-center outline-1 outline-white font-bold hover:bg-[#14825c]' to='/ingresar'>Ingresar</Link>
           <Link className='bg-[#d77165] hover:bg-[#a05149] text-white py-2 px-4 rounded-lg w-[170px] text-center outline-1 outline-white font-bold' to='/registrarse'>Registrarse</Link>
-        </div>
+       </div>
       </div>
     </section>
   )

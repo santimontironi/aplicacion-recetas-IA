@@ -22,6 +22,10 @@ body{
     animation: move 2.5s ease-in-out infinite alternate;
 }
 
+.containerLogin{
+    background: linear-gradient(120deg,#235c49,#41c398);
+}
+
 @keyframes move{
     from{
         transform: translateY(-15px);

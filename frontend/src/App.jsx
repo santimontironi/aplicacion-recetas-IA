@@ -21,6 +21,7 @@ function App() {
           <Route element={<UserProvider />}>
             <Route path="/ingresar" element={<Login />} />
             <Route path="/registrarse" element={<Register />} />
+            
             <Route path="/inicio" element={<SecurityRoutes>
               <DashboardUser/>
             </SecurityRoutes>} />

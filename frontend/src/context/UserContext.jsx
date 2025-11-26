@@ -24,7 +24,7 @@ export const UserProvider = () => {
             throw error
         }
         finally {
-            setTimeout(() => {
+            setTimeout(() => { 
                 setLoginUserLoading(false)
             }, 1500)
         }
@@ -57,7 +57,6 @@ export const UserProvider = () => {
                 setUser(res.data.user)
             }
             catch (error) {
-                console.log(error)
                 setUser(null)
             }
             finally {
