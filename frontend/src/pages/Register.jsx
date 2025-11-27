@@ -33,7 +33,7 @@ const Register = () => {
       {registerUserLoading ? <Loader /> : (
         <div className="flex flex-col xl:flex-row justify-between w-[320px] md:w-[600px] xl:w-[1000px] min-h-screen 2xl:w-[1200px] xl:min-h-[700px] shadow-[10px_10px_20px_5px_rgba(0,0,0,0.6)]">
           <div className="2xl:w-[45%] xl:w-[50%] bg-linear-120 to-[#8a00c4] from-[#43035f] flex flex-col p-8 xl:p-0 xl:border-r-4 xl:border-white">
-            <h2 className="text-center text-white mb-7 xl:mb-0 xl:text-[40px] md:text-[35px] text-[30px] 2xl:text-[50px] mt-3 md:mt-5 xl:mt-12 2xl:mt-16 text-shadow-[5px_5px_10px_rgba(0,0,0,0.6)]">Registro</h2>
+            <h2 className="text-center text-white mb-7 xl:mb-0 xl:text-[40px] md:text-[35px] text-[30px] 2xl:text-[50px] mt-3 md:mt-5 xl:mt-12 2xl:mt-16 text-shadow-[5px_5px_10px_rgba(0,0,0,0.6)] bg-[#8a00c4] rounded-lg w-[300px] md:w-[400px] xl:w-[500px] mx-auto">Registro</h2>
             <form className="flex flex-col justify-center items-center h-[60%] 2xl:h-[70%] gap-3" method="post" onSubmit={handleSubmit(formSubmit)}>
 
               <div className="mb-3 flex flex-col gap-2 relative">
