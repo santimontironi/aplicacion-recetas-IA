@@ -22,9 +22,14 @@ export const allRecipes = async (req,res) => {
     try{
         const userId = req.user.id
 
-        const recipes = await Recipe.find({ user: userId, active: true }).sort({ date: -1 }); //se consulta por las recetas en orden descendente
+        const recipes = await Recipe.find({ user: userId, active: true }).sort({ date: -1 }).lean(); //se consulta por las recetas en orden descendente y lean() sirve para transformar el resultado en un objeto de JS
 
-        res.status(200).json({ recipes });
+        const formatted = recipes.map(recipe => ({
+            ...recipe,
+            date: new Date(recipe.date).toLocaleDateString('es-AR')
+        }))
+
+        res.status(200).json({ recipes: formatted });
     }
     catch(error){
         res.status(500).json({message: 'Error al obtener las recetas', error: error.message});

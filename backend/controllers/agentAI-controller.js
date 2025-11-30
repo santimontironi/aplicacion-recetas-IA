@@ -4,19 +4,16 @@ const client = new OpenAI({ apiKey: process.env.OPENAI_KEY });
 
 export const generateRecipeAI = async (ingredients) => {
   const prompt = `
-    You are a professional chef. Create a complet recipe using:
+    Sos un chef profesional, crea recetas de comidas argentinas usando los siguientes ingredientes:
     ${ingredients.join(", ")}.
 
-    Return ONLY valid JSON.
-    Use double quotes.
-    Do NOT include commentary.
-    Final JSON format:
+    Retorna la receta UNICAMENTE en formato JSON, como el siguiente ejemplo:
 
     {
       recipeName: '',
       ingredients: [],
       preparation: '',
-      time: ''
+      time: '',
       difficulty: ''
     }
     
