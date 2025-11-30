@@ -28,8 +28,6 @@ export const generateRecipeAI = async (ingredients) => {
   });
 
   const response = completion.choices[0].message.content; //se retorna la respuesta del agente
-
-  console.log(response);
-
+  
   return JSON.parse(response);
 };

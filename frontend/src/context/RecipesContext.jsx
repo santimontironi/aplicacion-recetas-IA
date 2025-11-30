@@ -35,6 +35,7 @@ export const RecipesProvider = ({ children }) => {
             const res = await addRecipeAxios(ingredients)
             const recipeAdded = res.data.recipe
             setRecipes((prev) => [...prev, recipeAdded])
+            console.log(ingredients)
             return recipeAdded
         }
         catch (error) {
