@@ -26,6 +26,10 @@ body{
     background: linear-gradient(120deg,#8a00c4,#43035f);
 }
 
+.containerDashboard{
+    background: linear-gradient(120deg,#235c49,#41c398);
+}
+
 @keyframes move{
     from{
         transform: translateY(-15px);

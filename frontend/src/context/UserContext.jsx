@@ -1,7 +1,7 @@
 import { createContext, useEffect } from "react";
 import { Outlet } from "react-router-dom";
 import { useState } from "react";
-import { loginAxios, registerAxios, dashboardUserAxios } from "../api/api";
+import { loginAxios, registerAxios, dashboardUserAxios, logoutAxios } from "../api/api";
 
 export const UserContext = createContext();
 
@@ -26,7 +26,7 @@ export const UserProvider = () => {
         finally {
             setTimeout(() => { 
                 setLoginUserLoading(false)
-            }, 1500)
+            }, 2000)
         }
     }
 
@@ -62,15 +62,24 @@ export const UserProvider = () => {
             finally {
                 setTimeout(() => {
                     setDashboardLoading(false)
-                }, 1500)
+                }, 2000)
             }
         }
         getDashboardUser()
     }, [])
 
+    async function logoutUser() {
+        try {
+            await logoutAxios()
+            setUser(null)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
 
     return (
-        <UserContext.Provider value={{ loginUser, loginUserLoading, user, registerUserLoading, registerUser, dashboardLoading }}>
+        <UserContext.Provider value={{ loginUser, loginUserLoading, user, registerUserLoading, registerUser, dashboardLoading, logoutUser }}>
             <Outlet />
         </UserContext.Provider>
     )

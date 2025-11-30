@@ -32,3 +32,7 @@ export const deleteRecipeAxios = (id) => {
 export const recipeByIdAxios = (id) => {
     return baseUrl.get(`/recipeById/${id}`)
 }
+
+export const logoutAxios = () => {
+    return baseUrl.post('/logout', {})
+}

@@ -2,9 +2,8 @@ import { useContext } from "react";
 import { UserContext } from "../context/UserContext";
 import { Navigate } from "react-router-dom";
 import Loader from "./Loader"
-import { Outlet } from "react-router-dom";
 
-const SecurityRoutes = () => {
+const SecurityRoutes = ({children}) => {
 
     const { user, dashboardLoading } = useContext(UserContext)
 
@@ -17,8 +16,8 @@ const SecurityRoutes = () => {
     }
 
     return (
-        <Outlet/>
+        children
     )
 }
-
+    
 export default SecurityRoutes

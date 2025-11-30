@@ -22,7 +22,7 @@ export const allRecipes = async (req,res) => {
     try{
         const userId = req.user.id
 
-        const recipes = await Recipe.find({ user: userId });
+        const recipes = await Recipe.find({ user: userId, active: true }).sort({ date: -1 }); //se consulta por las recetas en orden descendente
 
         res.status(200).json({ recipes });
     }

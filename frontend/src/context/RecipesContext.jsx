@@ -1,10 +1,9 @@
 import { createContext, useState, useEffect } from "react";
 import { addRecipeAxios, getAllRecipesAxios, deleteRecipeAxios } from "../api/api";
-import { Outlet } from "react-router-dom";
 
 export const RecipesContext = createContext();
 
-export const RecipesProvider = () => {
+export const RecipesProvider = ({ children }) => {
 
     const [loadingAddRecipe, setLoadingAddRecipe] = useState(false)
     const [loadingAllRecipes, setLoadingAllRecipes] = useState(true)
@@ -61,7 +60,7 @@ export const RecipesProvider = () => {
         }
     }
 
-    return <RecipesContext.Provider value={{ addRecipe, loadingAddRecipe, recipes, newRecipe, loadingAllRecipes, deleteRecipeById }}>
-        <Outlet />
+    return <RecipesContext.Provider value={{ loadingAddRecipe, recipes, newRecipe, loadingAllRecipes, deleteRecipeById }}>
+        {children}
     </RecipesContext.Provider>
 }

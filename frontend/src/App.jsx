@@ -6,37 +6,37 @@ import Home from "./pages/Home";
 import DashboardUser from "./pages/DashboardUser";
 import SecurityRoutes from "./components/SecurityRoutes";
 import { RecipesProvider } from "./context/RecipesContext";
-import AddRecipe from "./pages/AddRecipe";
 import Recipe from "./pages/Recipe";
-import { RecipeByIdProvider } from "./context/RecipeById.JSX";
+import { RecipeByIdProvider } from "./context/RecipeById";
 
 function App() {
 
   return (
     <BrowserRouter>
-        <Routes>
+      <Routes>
 
-          <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home />} />
 
-          <Route element={<UserProvider />}>
-            <Route path="/ingresar" element={<Login />} />
-            <Route path="/registrarse" element={<Register />} />
-            
-            <Route path="/inicio" element={<SecurityRoutes>
-              <DashboardUser/>
-            </SecurityRoutes>} />
-          </Route>
+        <Route element={<UserProvider />}>
+          <Route path="/ingresar" element={<Login />} />
+          <Route path="/registrarse" element={<Register />} />
 
-          <Route element={<RecipesProvider />}>
-            <Route path="/nueva-receta" element={<SecurityRoutes><AddRecipe /></SecurityRoutes>} />
-          </Route>
+          <Route path="/inicio" element={
+            <RecipesProvider>
+              <SecurityRoutes>
+                <DashboardUser />
+              </SecurityRoutes>
+            </RecipesProvider>
+          } />
 
-          <Route element={<RecipeByIdProvider/>}>
-              <Route path="/receta/:id" element={<SecurityRoutes><Recipe/></SecurityRoutes>}/>
-          </Route>
+        </Route>
 
-        </Routes>
-      
+        <Route element={<RecipeByIdProvider />}>
+          <Route path="/receta/:id" element={<SecurityRoutes><Recipe /></SecurityRoutes>} />
+        </Route>
+
+      </Routes>
+
     </BrowserRouter>
   )
 }

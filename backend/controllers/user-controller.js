@@ -80,3 +80,13 @@ export const dashboardUser = async (req,res) => {
     }
 }
 
+export const logoutUser = async (req,res) => {
+    try{
+        res.clearCookie('token');
+        res.status(200).json({ message: 'Sesión cerrada correctamente' });
+    }
+    catch(error){
+        res.status(500).json({ message: 'Error al cerrar sesión', error: error.message });
+    }
+}
+
