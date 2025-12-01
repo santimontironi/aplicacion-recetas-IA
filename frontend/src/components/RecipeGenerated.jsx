@@ -11,11 +11,11 @@ const RecipeGenerated = () => {
   }
 
   return (
-    <section className="min-h-screen w-full bg-linear-to-br from-purple-600 to-blue-500 flex items-center justify-center p-4">
+    <section className="min-h-screen w-full bg-linear-to-br from-[#43035f] to-[#8a00c4] flex items-center justify-center p-4">
       <div className="max-w-4xl w-full">
         <button
           onClick={() => navigate('/inicio')}
-          className="mb-4 bg-white text-purple-700 px-6 py-2 rounded-lg font-semibold hover:bg-gray-100 transition shadow-lg"
+          className="cursor-pointer mb-4 bg-white text-purple-700 px-6 py-2 rounded-lg font-semibold hover:bg-gray-100 transition shadow-lg"
         >
           ← Volver al Dashboard
         </button>
@@ -64,7 +64,7 @@ const RecipeGenerated = () => {
           <div className="mt-8 flex gap-4 justify-center">
             <button 
               onClick={() => navigate('/dashboard')}
-              className="bg-green-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-600 transition shadow-lg"
+              className="bg-green-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-600 transition shadow-lg cursor-pointer"
             >
               🔄 Generar Otra Receta
             </button>
