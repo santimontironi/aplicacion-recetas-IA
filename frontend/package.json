@@ -15,6 +15,7 @@
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-hook-form": "^7.66.1",
+    "react-perfect-scrollbar": "^1.5.8",
     "react-router-dom": "^7.9.6",
     "react-spinners": "^0.17.0",
     "tailwindcss": "^4.1.17"

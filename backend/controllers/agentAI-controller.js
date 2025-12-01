@@ -7,24 +7,27 @@ export const generateRecipeAI = async (ingredients) => {
     Sos un chef profesional, crea recetas de comidas argentinas usando los siguientes ingredientes:
     ${ingredients.join(", ")}.
 
-    Retorna la receta UNICAMENTE en formato JSON, como el siguiente ejemplo:
+    Retorna la receta UNICAMENTE en formato JSON válido, sin bloques de código markdown.
+    Usa exactamente esta estructura:
 
     {
-      recipeName: '',
-      ingredients: [],
-      preparation: '',
-      time: '',
-      difficulty: ''
+      "recipeName": "",
+      "ingredients": [],
+      "preparation": [],
+      "time": "",
+      "difficulty": ""
     }
-    
   `;
 
   const completion = await client.chat.completions.create({
-    model: "gpt-4.1-mini",
+    model: "gpt-4o-mini",
     messages: [{ role: "user", content: prompt }],
   });
 
-  const response = completion.choices[0].message.content; //se retorna la respuesta del agente
+  let response = completion.choices[0].message.content;
+  
+  // Limpiar la respuesta de bloques de código markdown
+  response = response.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
   
   return JSON.parse(response);
 };

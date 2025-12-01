@@ -8,6 +8,7 @@ import SecurityRoutes from "./components/SecurityRoutes";
 import { RecipesProvider } from "./context/RecipesContext";
 import Recipe from "./pages/Recipe";
 import { RecipeByIdProvider } from "./context/RecipeById";
+import RecipeGenerated from "./components/RecipeGenerated";
 
 function App() {
 
@@ -25,6 +26,14 @@ function App() {
             <RecipesProvider>
               <SecurityRoutes>
                 <DashboardUser />
+              </SecurityRoutes>
+            </RecipesProvider>
+          } />
+
+          <Route path="/receta-generada" element={
+            <RecipesProvider>
+              <SecurityRoutes>
+                <RecipeGenerated />
               </SecurityRoutes>
             </RecipesProvider>
           } />
