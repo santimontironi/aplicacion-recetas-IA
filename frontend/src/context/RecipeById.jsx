@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 
 export const RecipeByIdContext = createContext();
 
-export const RecipeByIdProvider = () => {
+export const RecipeByIdProvider = ({children}) => {
 
     const[recipe,setRecipe] = useState([])
     const[loadingGetRecipe,setLoadingGetRecipe] = useState(true)

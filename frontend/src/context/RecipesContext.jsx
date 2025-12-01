@@ -33,7 +33,7 @@ export const RecipesProvider = ({ children }) => {
         setLoadingAddRecipe(true)
         try {
             const res = await addRecipeAxios(ingredients)
-            const recipeAdded = res.data.recipe
+            const recipeAdded = res.data.newRecipe
             setRecipes((prev) => [...prev, recipeAdded])
             return recipeAdded
         }
