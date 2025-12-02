@@ -32,8 +32,6 @@ const FormAddIngredients = ({ submitForm }) => {
         <div className="flex flex-row items-center gap-3 mb-6" key={index}>
           <input className="bg-white xl:w-[400px] 2xl:w-[500px] p-3 rounded-lg focus:outline-2 focus:outline-[#41c398]" onChange={(e) => handleChange(e.target.value.trim(), index)} value={ing} type="text" placeholder={`Ingrediente ${index + 1}`} />
 
-          <button type="button" onClick={() => setIngredients([...ingredients, ""])}><i className="bi bi-plus-circle text-[#41c398] hover:text-[#ffffff] text-[30px] cursor-pointer"></i></button>
-
           {ingredients.length > 1 && (
             <button className="bg-red-600 p-2 rounded-lg text-white cursor-pointer hover:bg-red-700" type="button" onClick={() => deleteInput(index)}>Eliminar</button>
           )}
@@ -45,7 +43,11 @@ const FormAddIngredients = ({ submitForm }) => {
         <p className="bg-red-500 text-center text-white p-2 w-[400px] mx-auto mb-5">Todos los campos deben estar completados</p>
       )}
 
-      <button className="bg-[#41c398] p-3 rounded-lg text-white cursor-pointer hover:bg-[#38ac85]" type="submit">Agregar ingredientes</button>
+      <div className="flex flex-row items-center gap-3">
+        <button className="bg-[#8a00c4] p-3 rounded-lg text-white cursor-pointer hover:bg-[#9e2fce]" type="button" onClick={() => setIngredients([...ingredients, ""])}>Nuevo ingrediente</button>
+        
+        <button className="bg-[#41c398] p-3 rounded-lg text-white cursor-pointer hover:bg-[#38ac85]" type="submit">Agregar ingredientes</button>
+      </div>
 
     </form>
   )

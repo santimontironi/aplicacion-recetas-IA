@@ -6,12 +6,12 @@ export const addRecipe = async (req, res) => {
         const { ingredients } = req.body;
         const recipe = await generateRecipeAI(ingredients);
 
-        await Recipe.create({
+        const newRecipe = await Recipe.create({
             ...recipe,
             user: req.user.id
         });
 
-        res.status(200).json({ message: 'Receta agregada correctamente', newRecipe: recipe });
+        res.status(200).json({ message: 'Receta agregada correctamente', newRecipe: newRecipe });
     }
     catch (error) {
         return res.status(500).json({ message: 'Error al agregar la receta', error: error.message });

@@ -1,11 +1,10 @@
 import { createContext, useEffect } from "react";
-import { Outlet } from "react-router-dom";
 import { useState } from "react";
 import { loginAxios, registerAxios, dashboardUserAxios, logoutAxios } from "../api/api";
 
 export const UserContext = createContext();
 
-export const UserProvider = () => {
+export const UserProvider = ({ children }) => {
 
     const [loginUserLoading, setLoginUserLoading] = useState(false)
     const [registerUserLoading, setRegisterUserLoading] = useState(false)
@@ -80,7 +79,7 @@ export const UserProvider = () => {
 
     return (
         <UserContext.Provider value={{ loginUser, loginUserLoading, user, registerUserLoading, registerUser, dashboardLoading, logoutUser }}>
-            <Outlet />
+            {children}
         </UserContext.Provider>
     )
 }
