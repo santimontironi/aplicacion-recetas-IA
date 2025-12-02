@@ -12,7 +12,7 @@ const FormAddIngredients = ({ submitForm }) => {
   }
 
   function deleteInput(index) {
-    setIngredients(prevIngredients => prevIngredients.filter((_, i) => i !== index))
+    setIngredients(ingredients.filter((_, i) => i !== index))
   }
 
   function handleSubmit(e) {

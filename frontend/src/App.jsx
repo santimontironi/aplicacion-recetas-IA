@@ -19,6 +19,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/ingresar" element={<Login />} />
           <Route path="/registrarse" element={<Register />} />
+
           <Route path="/inicio" element={
             <SecurityRoutes>
               <RecipesProvider>
@@ -40,6 +41,7 @@ function App() {
               </RecipeByIdProvider>
             </SecurityRoutes>
           } />
+          
         </Routes>
       </UserProvider>
     </BrowserRouter>
