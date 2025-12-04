@@ -1,5 +1,4 @@
 import { createContext } from "react";
-import { Outlet } from "react-router-dom";
 import { recipeByIdAxios } from "../api/api";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
@@ -36,7 +35,7 @@ export const RecipeByIdProvider = ({children}) => {
 
     return (
         <RecipeByIdContext.Provider value={{recipe,loadingGetRecipe}}>
-            <Outlet />
+            {children}
         </RecipeByIdContext.Provider>
     )
 }
