@@ -13,7 +13,7 @@ const Login = () => {
 
   const navigate = useNavigate()
 
-  const { register, formState: { errors }, handleSubmit } = useForm()
+  const { register, formState: { errors }, handleSubmit, reset } = useForm()
 
   async function submitForm(data) {
     try {
@@ -23,6 +23,7 @@ const Login = () => {
     catch (error) {
       if (error?.response?.data?.message) {
         setErrorLogin(error.response.data.message)
+        reset()
       }
     }
   }
@@ -81,7 +82,7 @@ const Login = () => {
 
             </form>
 
-            {errorLogin && <span className="mt-5 bg-red-500 text-white font-bold p-4 w-[300px] rounded-lg text-center">{errorLogin}</span>}
+            {errorLogin && <span className="mt-5 bg-red-500 text-white font-bold p-4 w-[300px] rounded-lg text-center mx-auto">{errorLogin}</span>}
           </div>
 
           <div className="2xl:w-[55%] xl:w-[50%] bg-[#8EECB8] flex flex-col justify-center items-center p-8">
