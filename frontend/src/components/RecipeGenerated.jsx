@@ -1,4 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom"
+import { useContext } from "react"
+import { RecipesContext } from "../context/RecipesContext"
 
 const RecipeGenerated = () => {
   const location = useLocation()
@@ -8,6 +10,18 @@ const RecipeGenerated = () => {
   if (!recipe) {
     navigate('/dashboard')
     return null
+  }
+
+  const { newRecipe } = useContext(RecipesContext)
+
+  async function handleNewGeneration() {
+    try{
+      const nuevaReceta = await newRecipe(recipe.ingredients)
+      navigate("/receta-generada", { state: { recipe: nuevaReceta } })
+    }
+    catch(error){
+      console.log(error)
+    }
   }
 
   return (
@@ -63,7 +77,7 @@ const RecipeGenerated = () => {
           
           <div className="mt-8 flex gap-4 justify-center">
             <button 
-              onClick={() => navigate('/dashboard')}
+              onClick={handleNewGeneration}
               className="bg-green-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-600 transition shadow-lg cursor-pointer"
             >
               🔄 Generar Otra Receta

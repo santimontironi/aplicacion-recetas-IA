@@ -30,7 +30,9 @@ function App() {
 
           <Route path="/receta-generada" element={
             <SecurityRoutes>
-              <RecipeGenerated />
+              <RecipesProvider>
+                <RecipeGenerated />
+              </RecipesProvider>
             </SecurityRoutes>
           } />
 

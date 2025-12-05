@@ -22,7 +22,8 @@ export const RecipeByIdProvider = ({children}) => {
                 return res.data
             }
             catch(error){
-
+                console.log(error)
+                throw error
             }
             finally{
                 setTimeout(() => {
