@@ -9,6 +9,8 @@ const recipeSchema = new mongoose.Schema({
     date: { type: Date, required: true, default: Date.now() },
     active: { type: Boolean, required: true, default: true },
     user: { type: String, required: true }
-});
+},
+    { timestamps: true }
+);
 
 export default mongoose.model("Recipe", recipeSchema);

@@ -1,5 +1,6 @@
 import { generateRecipeAI } from "./agentAI-controller.js";
 import Recipe from "../models/recipe-model.js";
+import dayjs from "dayjs";
 
 export const addRecipe = async (req, res) => {
     try {
@@ -11,54 +12,61 @@ export const addRecipe = async (req, res) => {
             user: req.user.id
         });
 
-        res.status(200).json({ message: 'Receta agregada correctamente', newRecipe: newRecipe });
+        const newRecipeFormatted = {
+            ...newRecipe.toObject(),
+            date: dayjs(newRecipe.createdAt).format('DD/MM/YYYY')
+        };
+
+        res.status(200).json({ message: 'Receta agregada correctamente', newRecipe: newRecipeFormatted });
     }
     catch (error) {
         return res.status(500).json({ message: 'Error al agregar la receta', error: error.message });
     }
 }
 
-export const allRecipes = async (req,res) => {
-    try{
+export const allRecipes = async (req, res) => {
+    try {
         const userId = req.user.id
 
-        const recipes = await Recipe.find({ user: userId, active: true }).sort({ date: -1 }).lean(); //se consulta por las recetas en orden descendente y lean() sirve para transformar el resultado en un objeto de JS
+        const recipes = await Recipe.find({ user: userId, active: true })
+            .sort({ createdAt: -1 })  // Ordenar por createdAt
+            .lean();
 
-        const formatted = recipes.map(recipe => ({
+        const recipeFormatted = recipes.map(recipe => ({
             ...recipe,
-            date: new Date(recipe.date).toLocaleDateString('es-AR')
-        }))
+            date: dayjs(recipe.createdAt).format('DD/MM/YYYY')
+        }));
 
-        res.status(200).json({ recipes: formatted });
+        res.status(200).json({ recipes: recipeFormatted });
     }
-    catch(error){
-        res.status(500).json({message: 'Error al obtener las recetas', error: error.message});
+    catch (error) {
+        res.status(500).json({ message: 'Error al obtener las recetas', error: error.message });
     }
 }
 
-export const deleteRecipe = async (req,res) => {
-    try{
+export const deleteRecipe = async (req, res) => {
+    try {
         const recipeId = req.params.id;
 
         await Recipe.findByIdAndUpdate(recipeId, { active: false });
 
         res.status(200).json({ message: 'Receta eliminada correctamente' });
     }
-    catch(error){
-        res.status(500).json({message: 'Error al eliminar la receta', error: error.message});
+    catch (error) {
+        res.status(500).json({ message: 'Error al eliminar la receta', error: error.message });
     }
 }
 
-export const recipeById = async (req,res) => {
-    try{
+export const recipeById = async (req, res) => {
+    try {
         const idRecipe = req.params.id;
 
         const recipe = await Recipe.findById(idRecipe);
 
         res.status(200).json({ recipe });
     }
-    catch(error){
-        res.status(500).json({message: 'Error al obtener la receta', error: error.message});
+    catch (error) {
+        res.status(500).json({ message: 'Error al obtener la receta', error: error.message });
     }
 }
 

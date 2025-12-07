@@ -29,7 +29,7 @@ const RecipeGenerated = () => {
       });
 
       if (result.isConfirmed) {
-        await newRecipe(recipe.ingredients);
+        await newRecipe({ingredients: recipe.ingredients});
 
         Swal.fire({
           title: "Regenerada",
@@ -44,7 +44,7 @@ const RecipeGenerated = () => {
       console.log(error);
       Swal.fire({
         title: "Error",
-        text: "No se pudo eliminar la receta",
+        text: "No se pudo regenerar la receta",
         icon: "error"
       });
     }
@@ -81,8 +81,8 @@ const RecipeGenerated = () => {
             </ul>
           </div>
 
-          <div className="bg-green-50 p-6 rounded-lg mb-6 border-l-4 border-[#41c398]">
-            <h4 className="font-bold text-xl text-[#41c398] mb-3 flex items-center gap-2">
+          <div className="bg-[#b2f1dc] p-6 rounded-lg mb-6 border-l-4 border-[#41c398]">
+            <h4 className="font-bold text-xl text-black mb-3 flex items-center gap-2">
               👨‍🍳 Preparación:
             </h4>
             <ol className="list-decimal list-inside space-y-3 text-gray-700 text-lg">
@@ -101,7 +101,7 @@ const RecipeGenerated = () => {
             </p>
           </div>
 
-          <div className="mt-8 flex gap-4 justify-center">
+          <div className="mt-8 flex gap-4 justify-center items-center mx-auto text-center">
             <button
               onClick={handleNewGeneration}
               className="bg-green-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-600 transition shadow-lg cursor-pointer"
