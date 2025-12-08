@@ -15,6 +15,8 @@ const RecipeGenerated = () => {
 
   const { newRecipe } = useContext(RecipesContext)
 
+  const ingredients = recipe.ingredients
+
   async function handleNewGeneration() {
     try {
       const result = await Swal.fire({
@@ -29,7 +31,9 @@ const RecipeGenerated = () => {
       });
 
       if (result.isConfirmed) {
-        await newRecipe({ingredients: recipe.ingredients});
+        const newRecipeGenerated = await newRecipe({ ingredients });
+
+        navigate('/receta-generada', { state: { recipe: newRecipeGenerated } })
 
         Swal.fire({
           title: "Regenerada",

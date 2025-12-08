@@ -14,7 +14,7 @@ export const addRecipe = async (req, res) => {
 
         const newRecipeFormatted = {
             ...newRecipe.toObject(),
-            date: dayjs(newRecipe.createdAt).format('DD/MM/YYYY')
+            date: dayjs(newRecipe.date).format('DD/MM/YYYY')
         };
 
         res.status(200).json({ message: 'Receta agregada correctamente', newRecipe: newRecipeFormatted });
@@ -67,6 +67,30 @@ export const recipeById = async (req, res) => {
     }
     catch (error) {
         res.status(500).json({ message: 'Error al obtener la receta', error: error.message });
+    }
+}
+
+export const searchRecipes = async (req, res) => {
+    try{
+        const { query } = req.body;
+
+        const userId = req.user.id;
+
+        const recipes = await Recipe.find({ 
+            user: userId,
+            active: true,
+            recipeName: { $regex: query, $options: 'i' }
+        }).sort({ createdAt: -1 }).lean();
+
+        const recipeFormatted = recipes.map(recipe => ({
+            ...recipe,
+            date: dayjs(recipe.createdAt).format('DD/MM/YYYY')
+        }));
+
+        res.status(200).json({ recipes: recipeFormatted });
+    }
+    catch(error){
+        res.status(500).json({ message: 'Error al buscar las recetas', error: error.message });
     }
 }
 
