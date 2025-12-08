@@ -79,7 +79,7 @@ export const searchRecipes = async (req, res) => {
         const recipes = await Recipe.find({ 
             user: userId,
             active: true,
-            recipeName: { $regex: query, $options: 'i' }
+            recipeName: { $regex: String(query), $options: 'i' }
         }).sort({ createdAt: -1 }).lean();
 
         const recipeFormatted = recipes.map(recipe => ({

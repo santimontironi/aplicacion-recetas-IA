@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect } from "react";
-import { addRecipeAxios, getAllRecipesAxios, deleteRecipeAxios } from "../api/api";
+import { addRecipeAxios, getAllRecipesAxios, deleteRecipeAxios, searchRecipeAxios } from "../api/api";
 
 export const RecipesContext = createContext();
 
@@ -8,6 +8,7 @@ export const RecipesProvider = ({ children }) => {
     const [loadingAddRecipe, setLoadingAddRecipe] = useState(false)
     const [loadingAllRecipes, setLoadingAllRecipes] = useState(true)
     const [recipes, setRecipes] = useState([])
+    const [recipesResults, setRecipesResults] = useState([])
 
     useEffect(() => {
         async function allRecipes() {
@@ -60,7 +61,18 @@ export const RecipesProvider = ({ children }) => {
         }
     }
 
-    return <RecipesContext.Provider value={{ loadingAddRecipe, recipes, newRecipe, loadingAllRecipes, deleteRecipeById }}>
+    async function searchRecipes(query) {
+        try {
+            const res = await searchRecipeAxios(query)
+            setRecipesResults(res.data.recipes)
+        }
+        catch (error) {
+            console.log(error)
+            throw error
+        }
+    }
+
+    return <RecipesContext.Provider value={{ loadingAddRecipe, recipes, newRecipe, loadingAllRecipes, deleteRecipeById, searchRecipes, recipesResults }}>
         {children}
     </RecipesContext.Provider>
 }
