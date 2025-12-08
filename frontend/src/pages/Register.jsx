@@ -4,6 +4,7 @@ import { UserContext } from "../context/UserContext";
 import Loader from "../components/Loader";
 import { useNavigate } from "react-router-dom";
 import foodImage from '../img/food2.png'
+import Back from "../components/Back"
 
 const Register = () => {
 
@@ -30,6 +31,7 @@ const Register = () => {
 
   return (
     <section className="w-full min-h-screen flex flex-col justify-center items-center pt-10 pb-10 xl:pt-0 xl:pb-0 bg-[#8a00c4]">
+      <Back url={'/'} />
       {registerUserLoading ? <Loader /> : (
         <div className="flex flex-col xl:flex-row justify-between w-[320px] md:w-[600px] xl:w-[1000px] min-h-screen 2xl:w-[1200px] xl:min-h-[700px] shadow-[10px_10px_20px_5px_rgba(0,0,0,0.6)]">
           <div className="2xl:w-[45%] xl:w-[50%] bg-linear-120 to-[#8a00c4] from-[#43035f] flex flex-col p-8 xl:p-0 xl:border-r-4 xl:border-white">

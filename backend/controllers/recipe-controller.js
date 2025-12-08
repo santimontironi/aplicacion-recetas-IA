@@ -14,7 +14,7 @@ export const addRecipe = async (req, res) => {
 
         const newRecipeFormatted = {
             ...newRecipe.toObject(),
-            date: dayjs(newRecipe.date).format('DD/MM/YYYY')
+            date: dayjs(newRecipe.createdAt).format('DD/MM/YYYY')
         };
 
         res.status(200).json({ message: 'Receta agregada correctamente', newRecipe: newRecipeFormatted });
