@@ -2,22 +2,20 @@ import { useLocation, useNavigate } from "react-router-dom"
 import { useContext, useState } from "react"
 import { RecipesContext } from "../context/RecipesContext"
 import Swal from "sweetalert2";
-import Loader from './Loader'
+import Loader from '../components/Loader'
 
 const RecipeGenerated = () => {
   const location = useLocation()
   const navigate = useNavigate()
   const recipe = location.state?.recipe
 
-  const [loadingGeneration, setLoadingGeneration] = useState(false)
-
   if (!recipe) {
-    navigate('/dashboard')
+    navigate('/inicio')
     return null
   }
 
   const { newRecipe } = useContext(RecipesContext)
-
+  const [loadingGeneration, setLoadingGeneration] = useState(false)
   const ingredients = recipe.ingredients
 
   async function handleNewGeneration() {

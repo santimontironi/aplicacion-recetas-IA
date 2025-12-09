@@ -13,7 +13,7 @@ function handleChange(value) {
 
 return (
     <div className="flex justify-center my-6">
-        <form className="w-full max-w-md">
+        <form className="w-full max-w-md" onSubmit={(e) => e.preventDefault()} method="post">
             <input
                 type="text"
                 value={query}

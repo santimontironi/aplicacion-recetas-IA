@@ -11,7 +11,7 @@ const Recipe = () => {
       {loadingGetRecipe ? <Loader /> : (
         <div className="containerRecipeId mx-auto p-5">
           <h2 className="text-3xl font-bold mb-5">{recipe.recipeName}</h2>
-          
+          <span>{recipe.difficulty}</span>
         </div>
       )}
     </section>

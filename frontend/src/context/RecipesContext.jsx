@@ -63,8 +63,9 @@ export const RecipesProvider = ({ children }) => {
 
     async function searchRecipes(query) {
         try {
-            const res = await searchRecipeAxios(query)
-            setRecipesResults(res.data.recipes)
+            await searchRecipeAxios(query)
+            const recipeFiltered = recipes.filter((recipe) => recipe.recipeName.toLowerCase().includes(query.toLowerCase()))
+            setRecipesResults(recipeFiltered)
         }
         catch (error) {
             console.log(error)

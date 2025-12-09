@@ -14,7 +14,7 @@ export const addRecipe = async (req, res) => {
 
         const newRecipeFormatted = {
             ...newRecipe.toObject(),
-            date: dayjs(newRecipe.createdAt).format('DD/MM/YYYY')
+            createdAt: dayjs(newRecipe.createdAt).format('DD/MM/YYYY')
         };
 
         res.status(200).json({ message: 'Receta agregada correctamente', newRecipe: newRecipeFormatted });
@@ -34,7 +34,7 @@ export const allRecipes = async (req, res) => {
 
         const recipeFormatted = recipes.map(recipe => ({
             ...recipe,
-            date: dayjs(recipe.createdAt).format('DD/MM/YYYY')
+            createdAt: dayjs(recipe.createdAt).format('DD/MM/YYYY')
         }));
 
         res.status(200).json({ recipes: recipeFormatted });

@@ -62,7 +62,7 @@ const Login = () => {
                   placeholder="Usuario o email" />
                 <i className="bi bi-person absolute left-3 text-[#606060] top-3"></i>
 
-                {errors.identifier && <span className="text-white bg-[#540974] text-center p-1">{errors.identifier.message}</span>}
+                {errors.identifier && <span className="text-white font-bold bg-[#540974] text-center p-1">{errors.identifier.message}</span>}
               </div>
 
               <div className="mb-3 flex flex-col gap-2 relative">
@@ -77,7 +77,7 @@ const Login = () => {
                             focus:outline-[#8a00c4]
                             xl:w-[320px]" type="password" id="password" name="password" {...register('password', { required: 'La contraseña es requerida' })} placeholder="Contraseña" />
                 <i className="bi bi-key absolute left-3 text-[#606060] top-3"></i>
-                {errors.password && <span className="text-white bg-[#540974] text-center p-1">{errors.password.message}</span>}
+                {errors.password && <span className="text-white bg-[#540974] font-bold text-center p-1">{errors.password.message}</span>}
               </div>
 
               <button className="p-4 bg-[#8a00c4] hover:bg-[#43035f] cursor-pointer w-[150px] md:w-[170px] xl:w-[200px] rounded-lg font-bold text-white" type="submit">Ingresar</button>

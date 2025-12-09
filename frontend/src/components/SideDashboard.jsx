@@ -11,7 +11,7 @@ import FormSearchRecipe from "./FormSearchRecipe"
 const SideDashboard = () => {
 
     const { user, logoutUser } = useContext(UserContext)
-    const { recipes, loadingAllRecipes, deleteRecipeById } = useContext(RecipesContext)
+    const { recipes, loadingAllRecipes, deleteRecipeById, recipesResults } = useContext(RecipesContext)
 
     async function deleteRecipe(id) {
         try {
@@ -48,6 +48,8 @@ const SideDashboard = () => {
         }
     }
 
+    const recipesToShow = recipesResults.length > 0 ? recipesResults : recipes;
+
     return (
         <section className="h-[635px] p-3 w-[500px] bg-linear-120 from-[#32aa82] to-[#41c398] shadow-[8px_8px_15px_5px_rgba(0,0,0,0.6)] rounded-lg xl:mt-0 xl:ml-5 xl:w-[300px] 2xl:w-[550px]">
             <div className="flex flex-col">
@@ -67,7 +69,7 @@ const SideDashboard = () => {
                     <div className="h-[400px] flex justify-center items-center">
                         <LoaderRecipes />
                     </div>
-                ) : recipes?.length > 0 ? (
+                ) : recipesToShow?.length > 0 ? (
 
                     <div className="mt-3">
                         <div className="flex flex-row justify-between items-center">
@@ -76,7 +78,7 @@ const SideDashboard = () => {
                         </div>
                         <ul className="flex flex-col gap-3 text-white mt-3 overflow-y-auto h-[400px]">
                             <PerfectScrollbar className="myScroll">
-                                {recipes.map((recipe) => (
+                                {recipesToShow.map((recipe) => (
                                     <RecipeList handleDelete={deleteRecipe} key={recipe._id} recipe={recipe} />
                                 ))}
                             </PerfectScrollbar>

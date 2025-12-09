@@ -8,7 +8,7 @@ import Home from "./pages/Home";
 import DashboardUser from "./pages/DashboardUser";
 import SecurityRoutes from "./components/SecurityRoutes";
 import Recipe from "./pages/Recipe";
-import RecipeGenerated from "./components/RecipeGenerated";
+import RecipeGenerated from "./pages/RecipeGenerated";
 
 function App() {
   return (
