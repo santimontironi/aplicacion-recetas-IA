@@ -22,9 +22,9 @@ const DashboardUser = () => {
   }
 
   return (
-    <section className="h-screen w-full containerDashboard flex justify-around items-center">
+    <section className="min-h-screen w-full containerDashboard flex justify-around items-center py-8 xl:py-0">
       <div className="xl:w-[1000px] 2xl:w-[1300px] xl:h-[600px] 2xl:h-[700px] bg-[#8a00c4] bg-opacity-80 p-5 rounded-lg shadow-[8px_8px_15px_5px_rgba(0,0,0,0.6)]">
-        <div className="flex xl:flex-row xl:justify-between 2xl:max-h-[650px]">
+        <div className="flex flex-col xl:flex-row xl:justify-between w-[320px] 2xl:max-h-[650px]">
           <div className="flex flex-col">
             <FormAddIngredients submitForm={handleGenerateRecipe} />
           </div>

@@ -7,7 +7,7 @@ const HeaderSideDashboard = () => {
 
     return (
         <div className="pt-4 pb-4 border-b-3 border-b-white flex flex-row items-center justify-between">
-            <h2 className="text-white text-[30px] font-bold text-shadow-[5px_5px_10px_rgba(0,0,0,0.6)]">
+            <h2 className="text-white text-[20px] xl:text-[30px] font-bold text-shadow-[5px_5px_10px_rgba(0,0,0,0.6)]">
                 Hola, {user.username}
             </h2>
             <button

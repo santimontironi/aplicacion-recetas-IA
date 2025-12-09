@@ -3,7 +3,7 @@ import { RecipesContext } from "../context/RecipesContext"
 
 const FormSearchRecipe = () => {
 
-const { searchRecipes, noRecipes } = useContext(RecipesContext)
+const { searchRecipes } = useContext(RecipesContext)
 const [query, setQuery] = useState("")
 
 function handleChange(value) {
