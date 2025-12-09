@@ -11,7 +11,7 @@ import FormSearchRecipe from "./FormSearchRecipe"
 const SideDashboard = () => {
 
     const { user, logoutUser } = useContext(UserContext)
-    const { recipes, loadingAllRecipes, deleteRecipeById, recipesResults } = useContext(RecipesContext)
+    const { recipes, loadingAllRecipes, deleteRecipeById, recipesResults, noRecipes } = useContext(RecipesContext)
 
     async function deleteRecipe(id) {
         try {
@@ -77,11 +77,13 @@ const SideDashboard = () => {
                             <FormSearchRecipe />
                         </div>
                         <ul className="flex flex-col gap-3 text-white mt-3 overflow-y-auto h-[400px]">
-                            <PerfectScrollbar className="myScroll">
-                                {recipesToShow.map((recipe) => (
-                                    <RecipeList handleDelete={deleteRecipe} key={recipe._id} recipe={recipe} />
-                                ))}
-                            </PerfectScrollbar>
+                            {noRecipes ? <p className="text-white mt-5 text-center text-lg">No se encontraron recetas</p> : (
+                                <PerfectScrollbar className="myScroll">
+                                    {recipesToShow.map((recipe) => (
+                                        <RecipeList handleDelete={deleteRecipe} key={recipe._id} recipe={recipe} />
+                                    ))}
+                                </PerfectScrollbar>
+                            )}
                         </ul>
                     </div>
                 ) : (

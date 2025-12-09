@@ -36,7 +36,3 @@ export const recipeByIdAxios = (id) => {
 export const logoutAxios = () => {
     return baseUrl.post('/logout', {})
 }
-
-export const searchRecipeAxios = (name) => {
-    return baseUrl.post('/searchRecipes', { name })
-}

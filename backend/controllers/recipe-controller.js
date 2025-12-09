@@ -70,30 +70,6 @@ export const recipeById = async (req, res) => {
     }
 }
 
-export const searchRecipes = async (req, res) => {
-    try{
-        const { query } = req.body;
-
-        const userId = req.user.id;
-
-        const recipes = await Recipe.find({ 
-            user: userId,
-            active: true,
-            recipeName: { $regex: String(query), $options: 'i' }
-        }).sort({ createdAt: -1 }).lean();
-
-        const recipeFormatted = recipes.map(recipe => ({
-            ...recipe,
-            date: dayjs(recipe.createdAt).format('DD/MM/YYYY')
-        }));
-
-        res.status(200).json({ recipes: recipeFormatted });
-    }
-    catch(error){
-        res.status(500).json({ message: 'Error al buscar las recetas', error: error.message });
-    }
-}
-
 
 
 

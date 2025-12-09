@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect } from "react";
-import { addRecipeAxios, getAllRecipesAxios, deleteRecipeAxios, searchRecipeAxios } from "../api/api";
+import { addRecipeAxios, getAllRecipesAxios, deleteRecipeAxios } from "../api/api";
 
 export const RecipesContext = createContext();
 
@@ -9,6 +9,7 @@ export const RecipesProvider = ({ children }) => {
     const [loadingAllRecipes, setLoadingAllRecipes] = useState(true)
     const [recipes, setRecipes] = useState([])
     const [recipesResults, setRecipesResults] = useState([])
+    const [noRecipes, setNoRecipes] = useState(false)
 
     useEffect(() => {
         async function allRecipes() {
@@ -63,9 +64,22 @@ export const RecipesProvider = ({ children }) => {
 
     async function searchRecipes(query) {
         try {
-            await searchRecipeAxios(query)
+            if (query === '') {
+                setRecipesResults([])
+                setNoRecipes(false)
+                return
+            }
+
             const recipeFiltered = recipes.filter((recipe) => recipe.recipeName.toLowerCase().includes(query.toLowerCase()))
+
+            if(recipeFiltered.length === 0){
+                setNoRecipes(true)
+                return
+            }
+
+            setNoRecipes(false)
             setRecipesResults(recipeFiltered)
+
         }
         catch (error) {
             console.log(error)
@@ -73,7 +87,7 @@ export const RecipesProvider = ({ children }) => {
         }
     }
 
-    return <RecipesContext.Provider value={{ loadingAddRecipe, recipes, newRecipe, loadingAllRecipes, deleteRecipeById, searchRecipes, recipesResults }}>
+    return <RecipesContext.Provider value={{ loadingAddRecipe, recipes, newRecipe, loadingAllRecipes, deleteRecipeById, searchRecipes, recipesResults, noRecipes }}>
         {children}
     </RecipesContext.Provider>
 }
