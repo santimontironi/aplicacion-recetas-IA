@@ -4,7 +4,7 @@ import { addRecipe, allRecipes, deleteRecipe, recipeById } from "../controllers/
 
 export const router = Router()
 
-router.post('/addRecipe', verifyToken, addRecipe)
-router.get('/allRecipes', verifyToken, allRecipes)
-router.post('/deleteRecipe/:id', verifyToken, deleteRecipe)
-router.get('/recipeById/:id', verifyToken, recipeById)
+router.post("/addRecipe", verifyToken, addRecipe)
+router.get("/allRecipes", verifyToken, allRecipes)
+router.post("/deleteRecipe/:id", verifyToken, deleteRecipe)
+router.get("/recipeById/:id", verifyToken, recipeById)

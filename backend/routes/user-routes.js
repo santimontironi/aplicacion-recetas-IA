@@ -6,5 +6,5 @@ export const router = Router();
 
 router.post("/login", loginUser);
 router.post("/register", registerUser);
-router.get('/dashboard', verifyToken, dashboardUser);
-router.post('/logout', verifyToken, logoutUser);
+router.get("/dashboard", verifyToken, dashboardUser);
+router.post("/logout", verifyToken, logoutUser);
