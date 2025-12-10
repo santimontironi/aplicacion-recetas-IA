@@ -23,6 +23,7 @@ app.use(cors({
 app.use(express.json());
 app.use(cookieParser());
 app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: true }))
 
 app.use('',UserRoutes);
 app.use('',RecipeRoutes)
