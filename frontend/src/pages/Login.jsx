@@ -36,7 +36,7 @@ const Login = () => {
   }, [user])
 
   return (
-    <section className="w-full min-h-screen containerLogin flex justify-center pt-10 pb-10 xl:pt-0 xl:pb-0 items-center containerLogin">
+    <section className="w-full min-h-screen containerLogin flex justify-center pt-20 pb-20 xl:pt-0 xl:pb-0 items-center containerLogin">
       <Back url={'/'} />
       {loginUserLoading ? <Loader /> : (
         <div className="flex flex-col xl:flex-row justify-between w-[320px] md:w-[600px] xl:w-[1000px] min-h-screen 2xl:w-[1200px] xl:min-h-[700px] shadow-[10px_10px_20px_5px_rgba(0,0,0,0.6)]">
