@@ -50,8 +50,8 @@ const SideDashboard = () => {
     const recipesToShow = recipesResults.length > 0 ? recipesResults : recipes;
 
     return (
-        <section className="h-[635px] p-3 w-[320px] md:w-[400px] xl:w-[450px] 2xl:w-[550px] bg-linear-120 from-[#32aa82] to-[#41c398] shadow-[8px_8px_15px_5px_rgba(0,0,0,0.6)] rounded-lg xl:mt-0 xl:ml-5">
-            <div className="flex flex-col w-[300px]">
+        <section className="h-[635px] p-3 w-[320px] md:w-[550px] xl:w-[450px] 2xl:w-[550px] bg-linear-120 from-[#32aa82] to-[#41c398] shadow-[8px_8px_15px_5px_rgba(0,0,0,0.6)] rounded-lg xl:mt-0 xl:ml-5">
+            <div className="flex flex-col w-[300px] md:w-[500px] xl:w-[400px] 2xl:w-[530px]">
                 <HeaderSideDashboard />
 
                 {loadingAllRecipes ? (

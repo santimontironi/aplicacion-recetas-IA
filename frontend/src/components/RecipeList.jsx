@@ -7,7 +7,7 @@ const RecipeList = ({ recipe, handleDelete }) => {
         <h3 className="font-bold">{recipe.recipeName}</h3>
         <span className="text-[#ecececec] font-extralight">{recipe.createdAt}</span>
       </Link>
-      <button className="absolute right-3 top-3 border-none bg-red-500 p-2 rounded-xl w-10 h-10 cursor-pointer hover:bg-red-600" onClick={() => handleDelete(recipe._id)}><i className="bi bi-trash"></i></button>
+      <button className="absolute flex justify-center items-center right-3 bottom-1 xl:top-3 border-none bg-red-500 p-2 rounded-xl w-7 h-7 xl:w-10 xl:h-10 cursor-pointer hover:bg-red-600" onClick={() => handleDelete(recipe._id)}><i className="bi bi-trash"></i></button>
     </div>
   )
 }
