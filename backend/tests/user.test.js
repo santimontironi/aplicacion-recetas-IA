@@ -2,6 +2,7 @@ import request from "supertest"; //librería para hacer requests HTTP sin levant
 import app from "../app.js";
 import { connectTestDB, disconnectTestDB, cleanTestDB } from "./setup.js";
 import User from "../models/user-model.js";
+import bcrypt from "bcrypt";
 
 beforeAll(async () => { //se ejecuta una vez antes de todos los tests del archivo
     await connectTestDB();
@@ -47,3 +48,56 @@ describe("POST /register", () => {
         expect(res.body.message).toBe("El email o el username ya existen");
     });
 });
+
+describe("POST /login", () => {
+    it("Debe iniciar sesión correctamente", async () => {
+
+        const hashPassword = await bcrypt.hash("hashed", 10);
+
+        await User.create({
+            username: "santi",
+            email: "santi@example.com",
+            password: hashPassword
+        });
+
+        const res = await request(app).post("/login").send({
+            identifier: "santi@example.com",
+            password: "hashed"
+        });
+
+        expect(res.statusCode).toBe(200);
+        expect(res.body.message).toBe("Inicio de sesión exitoso");
+    });
+
+    it("Debe impedir iniciar sesión con clave incorrecta", async () => {
+        await User.create({
+            username: "santi",
+            email: "santi@example.com",
+            password: "hashed"
+        });
+
+        const res = await request(app).post("/login").send({
+            identifier: "santi@example.com",
+            password: "hashed2"
+        });
+
+        expect(res.statusCode).toBe(400);
+        expect(res.body.message).toBe("La contraseña es incorrecta");
+    });
+
+    it("Debe impedir iniciar sesion con identifier incorrecto", async () => {
+        await User.create({
+            username: "santi",
+            email: "santi@example.com",
+            password: "hashed"
+        });
+
+        const res = await request(app).post("/login").send({
+            identifier: "santi@example.com2",
+            password: "hashed"
+        });
+
+        expect(res.statusCode).toBe(404);
+        expect(res.body.message).toBe("El usuario no existe");
+    });
+})
