@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon index.js",
     "dev": "nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --runInBand"
   },
   "keywords": [],
   "author": "",
@@ -24,5 +24,12 @@
     "mongoose": "^8.19.3",
     "nodemon": "^3.1.11",
     "openai": "^6.9.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^30.0.0",
+    "bcryptjs": "^3.0.3",
+    "jest": "^30.2.0",
+    "mongodb-memory-server": "^10.4.1",
+    "supertest": "^7.1.4"
   }
 }
