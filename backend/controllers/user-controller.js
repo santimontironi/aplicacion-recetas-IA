@@ -71,9 +71,9 @@ export const dashboardUser = async (req,res) => {
 
         const user = await User.findById(userId);
 
-        if(!user) return res.status(404).json({ authorized: false });
+        if(!user) return res.status(401).json({ message: 'El usuario no existe o no esta autorizado', authorized: false });
 
-        res.status(200).json({ user });
+        res.status(200).json({ message: 'Entrada al dashboard exitosa', user });
     }
     catch(error){
         res.status(500).json({message: 'Error al entrar al dashboard', error: error.message});

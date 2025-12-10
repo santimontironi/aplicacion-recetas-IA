@@ -3,6 +3,7 @@ import app from "../app.js";
 import { connectTestDB, disconnectTestDB, cleanTestDB } from "./setup.js";
 import User from "../models/user-model.js";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 beforeAll(async () => { //se ejecuta una vez antes de todos los tests del archivo
     await connectTestDB();
@@ -101,3 +102,38 @@ describe("POST /login", () => {
         expect(res.body.message).toBe("El usuario no existe");
     });
 })
+
+describe("GET /dashboard", () => {
+    it("Debe permitir el acceso con un token válido", async () => {
+        
+        //se crear usuario real
+        const hashPassword = await bcrypt.hash("123456", 10);
+        const user = await User.create({
+            username: "santi",
+            email: "santi@example.com",
+            password: hashPassword
+        });
+
+        // se generar token manualmente (igual que en tu controller)
+        const token = jwt.sign(
+            { id: user._id },
+            process.env.JWT_SECRET,
+            { expiresIn: "1d" }
+        );
+
+        // se hace un request con cookie
+        const res = await request(app)
+            .get("/dashboard")
+            .set("Cookie", [`token=${token}`]);
+
+        expect(res.statusCode).toBe(200);
+        expect(res.body.message).toBe("Entrada al dashboard exitosa");
+    });
+
+    it("Debe impedir acceso sin token", async () => {
+        const res = await request(app).get("/dashboard");
+
+        expect(res.statusCode).toBe(401);
+        expect(res.body.authorized).toBe(false);
+    });
+});
