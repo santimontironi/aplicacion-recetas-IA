@@ -4,6 +4,9 @@ import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
 import { router as UserRoutes } from "./routes/user-routes.js";
 import { router as RecipeRoutes } from "./routes/recipe-routes.js";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const app = express();
 
