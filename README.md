@@ -21,6 +21,7 @@
 ## Tecnologías utilizadas
 - React.js
 - Node.js
+- Jest para testing
 - Express
 - OpenAI API (GPT)
 - Mongoose / MongoDB
