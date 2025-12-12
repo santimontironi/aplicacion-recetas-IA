@@ -1,4 +1,6 @@
-# 🍽️ AI Recipe Generator (en desarrollo)
+# 🍽️ AI Recipe Generator (Finalizado)
+
+## Despliegue: https://morfibot.netlify.app/
 
 ### Aplicación web donde ingresás ingredientes y un agente de IA (GPT) genera recetas completas basadas en lo que tengas a mano.
 
@@ -21,7 +23,7 @@
 ## Tecnologías utilizadas
 - React.js
 - Node.js
-- Jest para testing
+- Jest para testing de autenticación
 - Express
 - OpenAI API (GPT)
 - Mongoose / MongoDB
