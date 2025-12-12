@@ -34,3 +34,8 @@
 - La aplicación envía la información al backend.
 - El agente de IA procesa esos ingredientes y genera una receta completa.
 - El resultado se muestra en pantalla y se puede guardar (si está implementado).
+
+## Testing
+
+### Para ejecutar los tests de autenticación y login:
+- npm test
