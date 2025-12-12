@@ -76,7 +76,9 @@ const SideDashboard = () => {
                         </ul>
                     </div>
                 ) : (
-                    <p className="text-white mt-5 text-center text-lg">No tienes recetas guardadas</p>
+                    <div className="flex items-center justify-center h-[400px]">
+                        <p className="text-white mt-5 text-center text-lg bg-[#23755a] p-3 w-[300px] md:w-[350px] xl:w-[400px] rounded-lg">No tienes recetas guardadas</p>
+                    </div>
                 )}
             </div>
         </section>
