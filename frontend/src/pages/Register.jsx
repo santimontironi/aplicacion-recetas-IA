@@ -20,7 +20,9 @@ const Register = () => {
     try {
       await registerUser(data)
       setErrorRegister(null)
-      navigate('/ingresar')
+      navigate('/ingresar',{
+        state: {message: 'Usuario registrado correctamente. Por favor, inicie sesión.'}
+      })
     }
     catch (error) {
       if (error?.response?.data?.message) {

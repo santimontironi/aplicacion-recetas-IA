@@ -2,9 +2,11 @@ import { useContext, useState, useEffect } from "react"
 import { UserContext } from "../context/UserContext"
 import Loader from "../components/Loader"
 import { useForm } from "react-hook-form"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useLocation } from "react-router-dom"
 import foodImage from '../img/food.jpg'
 import Back from "../components/Back"
+ import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
 
@@ -13,6 +15,7 @@ const Login = () => {
   const [errorLogin, setErrorLogin] = useState(null)
 
   const navigate = useNavigate()
+  const location = useLocation()
 
   const { register, formState: { errors }, handleSubmit, reset } = useForm()
 
@@ -34,6 +37,14 @@ const Login = () => {
       navigate('/inicio')
     }
   }, [user])
+
+  useEffect(() => {
+    if(location.state?.message) {
+      toast.success(location.state.message,{
+        autoClose: 2500
+      })
+    }
+  },[location.state])
 
   return (
     <section className="w-full min-h-screen containerLogin flex justify-center pt-20 pb-20 xl:pt-0 xl:pb-0 items-center containerLogin">
@@ -106,7 +117,7 @@ const Login = () => {
       )}
 
 
-
+      <ToastContainer />
     </section>
   )
 }
