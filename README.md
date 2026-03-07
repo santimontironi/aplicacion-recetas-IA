@@ -1,6 +1,6 @@
 # 🍽️ MorfiBot — Generador de Recetas con IA
 
-**Demo en producción:** [https://morfibot.netlify.app/](https://morfibot.netlify.app/)
+**Proyecto en producción:** [https://morfibot.netlify.app/](https://morfibot.netlify.app/)
 
 Aplicación web fullstack donde ingresás los ingredientes que tenés en casa y un agente de inteligencia artificial (GPT-4o-mini) genera recetas argentinas completas al instante.
 
